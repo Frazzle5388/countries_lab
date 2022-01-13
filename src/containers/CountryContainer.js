@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CountriesList from "../components/CountriesList";
+import CountryDetail from "../components/CountryDetail";
 
 const CountryContainer = () => {
     const [countries, setCountries] = useState([]);
@@ -10,13 +11,20 @@ const CountryContainer = () => {
     }, [])
 
     const getCountries = function(){
-        fetch('https://restcountries.com/v3.1/all')
+        fetch('https://restcountries.com/v2/all')
         .then(res => res.json())
         .then(countries => setCountries(countries))
     }
 
+    const onCountrySelected = function(country){
+        setSelectedCountry(country);
+    }
+
     return (
+        <>
         <CountriesList countries={countries}/>
+        {selectedCountry ? <CountryDetail country={selectedCountry} /> : null}
+        </>
     )
     
 }
