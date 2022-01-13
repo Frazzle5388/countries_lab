@@ -16,7 +16,7 @@ const CountryContainer = () => {
         .then(countries => setCountries(countries))
     }
 
-    const onCountrySelected = function(country){
+    const onCountryClick = function(country){
         setSelectedCountry(country);
     }
 
